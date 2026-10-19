@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chúc mẹ 20/10</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;1,400;1,500;1,600&display=swap">
+<style>
+html{color-scheme:light}body{margin:0}
+/* Layout: thiệp giấy kem có khung đôi và hoa hồng ở bốn góc, đặt trên nền hoàng hôn hồng đào; mỗi lời chúc là một trang */
+:root{
+  --sky1:#f3b3c5; --sky2:#f8cdc2; --sky3:#f5dcb4;
+  --paper:#fdf8f1; --ink:#43303a; --muted:#8b6d7a;
+  --rose:#b83a62; --rose-lt:#f2b7c8; --rose-soft:#e4a4b8; --leaf:#7fa17b; --lilac:#b79ad6;
+  --display:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"Lora",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --sky1:#4b2a47; --sky2:#5c3548; --sky3:#6b4a49; color-scheme:dark}}
+:root[data-theme="dark"]{--sky1:#4b2a47; --sky2:#5c3548; --sky3:#6b4a49; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{min-height:100%; overflow-x:hidden}
+body{
+  background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 55%,var(--sky3) 100%) fixed var(--sky2);
+  color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.75;
+  padding-block:16px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex; justify-content:center; align-items:flex-start;
+}
+#petals{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:0}
+
+.card{
+  position:relative; z-index:1; width:100%; max-width:500px; min-width:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .35 0 0 0 0 .4 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),var(--paper);
+  border-radius:4px; padding:50px clamp(34px,9vw,52px) 20px;
+  box-shadow:0 2px 4px rgba(90,40,70,.12),0 24px 50px -20px rgba(90,40,70,.4);
+  text-align:center;
+}
+.card::before{content:""; position:absolute; inset:14px; border:1.5px solid var(--rose-soft); pointer-events:none}
+.card::after{content:""; position:absolute; inset:19px; border:1px solid color-mix(in srgb,var(--rose-soft) 60%,transparent); pointer-events:none}
+.corner{position:absolute; width:96px; height:96px; pointer-events:none}
+.corner.tl{top:8px; left:8px}
+.corner.tr{top:8px; right:8px; transform:scaleX(-1)}
+.corner.bl{bottom:8px; left:8px; transform:scaleY(-1)}
+.corner.br{bottom:8px; right:8px; transform:scale(-1,-1)}
+.corner.bl,.corner.br{width:62px; height:62px}
+
+.stage{display:grid}
+.page{
+  grid-area:1/1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px;
+  min-width:0; opacity:0; visibility:hidden; transform:translateY(8px);
+  transition:opacity .45s ease, transform .45s ease, visibility 0s linear .45s;
+}
+.page.on{opacity:1; visibility:visible; transform:none; transition:opacity .45s ease, transform .45s ease, visibility 0s}
+h1,h2{font-family:var(--display); font-style:italic; font-weight:600; color:var(--rose); margin:0; text-wrap:balance; line-height:1.2}
+h1{font-size:clamp(28px,8vw,38px)}
+h2{font-size:clamp(30px,8.6vw,42px)}
+.hearts{color:var(--rose); font-size:10px; letter-spacing:.7em; padding-left:.7em}
+p{margin:0; text-wrap:pretty; max-width:34ch}
+p strong{font-weight:600; color:var(--rose)}
+.script{font-family:var(--display); font-style:italic; font-weight:500; color:var(--rose); font-size:clamp(20px,5.4vw,25px); line-height:1.3}
+.small{font-size:14px; color:var(--muted)}
+.date{font-family:var(--display); font-style:italic; font-size:24px; color:var(--rose); letter-spacing:.06em}
+.big{font-family:var(--display); font-style:italic; font-weight:600; color:var(--rose); font-size:clamp(32px,9.5vw,42px); line-height:1.05}
+.photo{position:relative; margin:2px 0 2px; padding:0; transform:rotate(-1.4deg); width:min(100%,230px)}
+.photo::before{content:""; position:absolute; top:-11px; left:50%; width:84px; height:22px; transform:translateX(-50%) rotate(3deg); background:color-mix(in srgb,var(--lilac) 55%,transparent); border:1px solid color-mix(in srgb,var(--lilac) 70%,transparent); z-index:1}
+.photo img{display:block; width:100%; height:auto; border:8px solid #fffdfb; border-bottom-width:18px; box-shadow:0 8px 22px -10px rgba(90,40,70,.5)}
+
+.nav{position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px}
+.dots{display:flex; gap:9px}
+.dots button{width:9px; height:9px; padding:0; border-radius:50%; border:1.5px solid var(--rose); background:transparent}
+.dots button[aria-current="true"]{background:var(--rose)}
+button{font:inherit; cursor:pointer}
+.arrow{min-width:44px; height:38px; border-radius:999px; border:1.5px solid var(--rose-soft); background:transparent; color:var(--rose); font-size:18px; line-height:1}
+.arrow:disabled{opacity:.3; cursor:default}
+.next{min-width:44px; height:38px; padding:0 18px; border-radius:999px; border:0; background:var(--rose); color:#fff; font-size:14px; font-weight:500}
+.arrow:focus-visible,.next:focus-visible,.dots button:focus-visible{outline:3px solid var(--lilac); outline-offset:2px}
+.special{margin-top:6px; padding:10px 20px; border-radius:999px; border:1.5px solid var(--rose); background:transparent; color:var(--rose); font-size:14px; font-weight:500}
+.special:hover{background:var(--rose); color:#fff}
+.special:focus-visible{outline:3px solid var(--lilac); outline-offset:2px}
+.surprise{position:absolute; inset:-6px; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:var(--paper); cursor:pointer; animation:pop .5s ease}
+.surprise .small{font-size:12px}
+.surprise img{width:min(100%,220px); height:auto; border-radius:6px}
+@keyframes pop{from{opacity:0; transform:scale(.9)}to{opacity:1; transform:none}}
+.hint{margin-top:10px; font-size:12px; color:var(--muted); letter-spacing:.04em}
+@media (prefers-reduced-motion:reduce){.page,.page.on{transition:none}}
+</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="corner" viewBox="0 0 100 100">
+      <g fill="none" stroke="var(--leaf)" stroke-width="1.6" stroke-linecap="round">
+        <path d="M32 30 C50 14 68 20 92 12"/><path d="M30 32 C14 50 20 68 12 92"/>
+      </g>
+      <g fill="var(--leaf)">
+        <ellipse cx="54" cy="19" rx="7" ry="3.2" transform="rotate(-20 54 19)"/>
+        <ellipse cx="76" cy="16" rx="6" ry="2.8" transform="rotate(-10 76 16)"/>
+        <ellipse cx="19" cy="54" rx="3.2" ry="7" transform="rotate(20 19 54)"/>
+        <ellipse cx="16" cy="76" rx="2.8" ry="6" transform="rotate(10 16 76)"/>
+      </g>
+      <circle cx="30" cy="30" r="16" fill="var(--rose)"/>
+      <circle cx="30" cy="30" r="11" fill="var(--rose-lt)"/>
+      <path d="M30 24 a6 6 0 1 1 -5 4 a3.5 3.5 0 1 1 4 -3" fill="none" stroke="var(--rose)" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="52" cy="35" r="6" fill="var(--rose-lt)" stroke="var(--rose)" stroke-width="1"/>
+      <circle cx="35" cy="52" r="5" fill="var(--rose-lt)" stroke="var(--rose)" stroke-width="1"/>
+    </symbol>
+  </defs>
+</svg>
+
+<canvas id="petals" aria-hidden="true"></canvas>
+<main class="card" id="card">
+  <svg class="corner tl" aria-hidden="true"><use href="#corner"/></svg>
+  <svg class="corner tr" aria-hidden="true"><use href="#corner"/></svg>
+  <svg class="corner bl" aria-hidden="true"><use href="#corner"/></svg>
+  <svg class="corner br" aria-hidden="true"><use href="#corner"/></svg>
+
+  <div class="stage">
+    <section class="page on" aria-label="Trang 1">
+      <h1>Chúc mẹ một ngày 20/10 vui vẻ!</h1>
+      <p>Chúc mẹ luôn <strong>mạnh khỏe</strong>, mỗi ngày đều tràn đầy năng lượng.</p>
+      <figure class="photo"><img src="anh1.jpg" alt="Hai mẹ con dưới gốc cây"></figure>
+    </section>
+
+    <section class="page" aria-label="Trang 2" aria-hidden="true">
+      <h2>Hạnh phúc</h2>
+      <p class="script">bên gia đình</p>
+      <p>Chúc mẹ luôn <strong>hạnh phúc bên gia đình</strong> của mình.</p>
+      <figure class="photo"><img src="anh2.jpg" alt="Cả nhà chụp ảnh trong ngày lễ tốt nghiệp"></figure>
+    </section>
+
+    <section class="page" aria-label="Trang 3" aria-hidden="true">
+      <h2>Kiếm thật nhiều tiền</h2>
+      <p>Chúc mẹ công việc thuận lợi, <strong>kiếm được nhiều tiền</strong>.</p>
+      <figure class="photo"><img src="anh3.jpg" alt="Ba mẹ và con trong lễ trao bằng"></figure>
+    </section>
+
+    <section class="page" aria-label="Trang 4" aria-hidden="true">
+      <h2>Đầu óc thoải mái</h2>
+      <p class="script">không phải lo nghĩ nhiều</p>
+      <p>Chúc mẹ <strong>đầu óc luôn thoải mái</strong>, không phải lo nghĩ nhiều nhé mẹ.</p>
+    </section>
+
+    <section class="page" aria-label="Trang 5" aria-hidden="true">
+      <div class="big">Happy Women's Day</div>
+      <p class="small">Chúc mừng Ngày Phụ nữ Việt Nam</p>
+      <div class="date">20 · 10</div>
+      <button class="special" id="special" type="button" aria-expanded="false" aria-controls="surprise">Bấm vào đây để có điều đặc biệt</button>
+      <div class="surprise" id="surprise" hidden>
+        <img src="dacbiet.gif" alt="Chú thỏ bắn pháo giấy chúc mừng">
+        <p class="script">Con yêu mẹ nhiều!</p>
+        <p class="small">Chạm để đóng</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="nav">
+    <button class="arrow" id="prev" type="button" aria-label="Trang trước">&#8592;</button>
+    <div class="dots" id="dots"></div>
+    <button class="next" id="next" type="button">Tiếp</button>
+  </div>
+</main>
+
+<script>
+(function(){
+  /* Chuyển trang */
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var dots=document.getElementById('dots'), prev=document.getElementById('prev'), next=document.getElementById('next');
+  var cur=0, startX=null;
+  pages.forEach(function(_,i){
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Trang '+(i+1));
+    b.addEventListener('click',function(){show(i)}); dots.appendChild(b);
+  });
+  function show(n){
+    cur=Math.max(0,Math.min(pages.length-1,n));
+    pages.forEach(function(p,i){p.classList.toggle('on',i===cur); p.setAttribute('aria-hidden',i===cur?'false':'true')});
+    [].forEach.call(dots.children,function(b,i){ if(i===cur){b.setAttribute('aria-current','true')}else{b.removeAttribute('aria-current')} });
+    prev.disabled=cur===0;
+    next.textContent=cur===pages.length-1?'↺ Xem lại từ đầu':'Tiếp';
+  }
+  prev.addEventListener('click',function(){show(cur-1)});
+  next.addEventListener('click',function(){show(cur===pages.length-1?0:cur+1)});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight')show(cur+1); else if(e.key==='ArrowLeft')show(cur-1);
+  });
+  var card=document.getElementById('card');
+  card.addEventListener('touchstart',function(e){startX=e.touches[0].clientX},{passive:true});
+  card.addEventListener('touchend',function(e){
+    if(startX===null)return; var dx=e.changedTouches[0].clientX-startX; startX=null;
+    if(Math.abs(dx)>50){show(dx<0?cur+1:cur-1)}
+  });
+  show(0);
+  var sp=document.getElementById('special'), su=document.getElementById('surprise');
+  sp.addEventListener('click',function(){
+    su.hidden=false; sp.setAttribute('aria-expanded','true');
+    if(window.__burst)window.__burst();
+  });
+  su.addEventListener('click',function(){su.hidden=true; sp.setAttribute('aria-expanded','false')});
+
+  /* Hoa rơi */
+  var c=document.getElementById('petals'), x=c.getContext('2d'), W,H,dpr=Math.min(window.devicePixelRatio||1,2);
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cols=['#f4a7bd','#f9c6d4','#e58aa7','#fbd9e2','#f7c9a8'];
+  var ps=[];
+  function size(){W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
+  function mk(y){return{x:Math.random()*W,y:y!=null?y:Math.random()*H,r:5+Math.random()*8,vy:.35+Math.random()*.8,
+    vx:-.3+Math.random()*.6,a:Math.random()*6.28,va:(Math.random()-.5)*.03,sw:Math.random()*6.28,col:cols[(Math.random()*cols.length)|0],o:.5+Math.random()*.4}}
+  function draw(p){
+    x.save();x.translate(p.x,p.y);x.rotate(p.a);x.globalAlpha=p.o;x.fillStyle=p.col;
+    x.beginPath();x.moveTo(0,-p.r);x.bezierCurveTo(p.r*.9,-p.r*.6,p.r*.7,p.r*.7,0,p.r);
+    x.bezierCurveTo(-p.r*.7,p.r*.7,-p.r*.9,-p.r*.6,0,-p.r);x.fill();x.restore();
+  }
+  function tick(){
+    x.clearRect(0,0,W,H);
+    for(var i=0;i<ps.length;i++){var p=ps[i];
+      p.sw+=.02;p.x+=p.vx+Math.sin(p.sw)*.5;p.y+=p.vy;p.a+=p.va;
+      if(p.y>H+20){ps[i]=mk(-20)} draw(p);}
+    requestAnimationFrame(tick);
+  }
+  window.__burst=function(){if(reduce)return;for(var k=0;k<40;k++){var p=mk(-10-Math.random()*H*.4);p.vy+=.8;ps.push(p)}if(ps.length>140)ps.splice(0,ps.length-140)};
+  size();addEventListener('resize',size);
+  var n=reduce?12:Math.round(Math.min(34,Math.max(16,W/36)));
+  for(var i=0;i<n;i++)ps.push(mk());
+  if(reduce){for(var j=0;j<ps.length;j++)draw(ps[j])}else{tick()}
+})();
+</script>
+</body>
+</html>
